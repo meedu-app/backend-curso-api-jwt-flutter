@@ -14,29 +14,28 @@
     },
     {
       "src": "/api/v1/register",
-      "dest": "/src/routes/index.ts",
+      "dest": "/src/index.ts",
       "methods": ["POST"]
     },
     {
       "src": "/api/v1/login",
-      "dest": "/src/routes/index.ts",
+      "dest": "/src/index.ts",
       "methods": ["POST"]
     },
     {
       "src": "/api/v1/refresh-token",
-      "dest": "/src/routes/index.ts",
+      "dest": "/src/index.ts",
       "methods": ["POST"]
     },
     {
       "src": "/api/v1/update-avatar",
-      "dest": "/src/routes/index.ts",
+      "dest": "/src/index.ts",
       "methods": ["POST"]
     },
     {
       "src": "/api/v1/user-info",
-      "dest": "/src/routes/index.ts",
+      "dest": "/src/index.ts",
       "methods": ["GET"]
     }
-  ],
-  "public": false
+  ]
 }
