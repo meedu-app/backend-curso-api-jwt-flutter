@@ -1,0 +1,256 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Curso flutter",
+    "description": "",
+    "version": "1.0"
+  },
+  "schemes": ["http"],
+  "host": "localhost:7000",
+  "basePath": "/api/v1",
+  "produces": ["application/json"],
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": ["auth"],
+        "x-swagger-router-controller": "home",
+        "description": "Create a new user",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "username"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "email@domain.com"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Acceso denegado jwt",
+            "examples": {
+              "application/json": {
+                "message": "invalid jwt"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "examples": {
+              "application/json": {
+                "message": "invalid email"
+              }
+            }
+          },
+
+          "200": {
+            "description": "JSON con un jwt y la data del usuario",
+            "examples": {
+              "application/json": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNDliZWZjNmZlMjU1NTM1M2YyYzNlOCIsImlhdCI6MTU2NTExNDEwOCwiZXhwIjoxNTY1MTE3NzA4fQ.e4Uk92jiM17fnX3jKbkYHLvKjr9wp8EWTIL8lbe6vTU",
+                "expiresIn": 3600
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["auth"],
+        "x-swagger-router-controller": "home",
+        "description": "login user to our API",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "email@domain.com"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Acceso denegado jwt",
+            "examples": {
+              "application/json": {
+                "message": "invalid jwt"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "examples": {
+              "application/json": {
+                "message": "invalid email"
+              }
+            }
+          },
+
+          "200": {
+            "description": "JSON con un jwt y la data del usuario",
+            "examples": {
+              "application/json": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNDliZWZjNmZlMjU1NTM1M2YyYzNlOCIsImlhdCI6MTU2NTExNDEwOCwiZXhwIjoxNTY1MTE3NzA4fQ.e4Uk92jiM17fnX3jKbkYHLvKjr9wp8EWTIL8lbe6vTU",
+                "expiresIn": 3600
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-info": {
+      "get": {
+        "tags": ["Profile"],
+        "x-swagger-router-controller": "home",
+        "description": "get the user info",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "jwt token"
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Acceso denegado jwt",
+            "examples": {
+              "application/json": {
+                "message": "invalid jwt"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "examples": {
+              "application/json": {
+                "message": "invalid email"
+              }
+            }
+          },
+
+          "200": {
+            "description": "JSON",
+            "examples": {
+              "application/json": {
+                "_id": "5d49befc6fe2555353f2c3e8",
+                "username": "DarwinMorocho",
+                "email": "www.dina.ec@gmail.com",
+                "createdAt": "2019-08-06T17:55:08.430Z",
+                "updatedAt": "2019-08-06T17:55:08.430Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update-avatar": {
+      "post": {
+        "tags": ["Profile"],
+        "x-swagger-router-controller": "home",
+        "description": "update the user avatar image",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "jwt token"
+          },
+          {
+            "name": "attachment",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Acceso denegado jwt",
+            "examples": {
+              "application/json": {
+                "message": "invalid jwt"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "examples": {
+              "application/json": {
+                "message": "invalid email"
+              }
+            }
+          },
+
+          "200": {
+            "description": "avatar path"
+          }
+        }
+      }
+    },
+    "/tokens/refresh": {
+      "post": {
+        "tags": ["refresh"],
+        "x-swagger-router-controller": "home",
+        "description": "invalid a token and return a new jwt",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "jwt token"
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Acceso denegado jwt",
+            "examples": {
+              "application/json": {
+                "message": "invalid jwt"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "examples": {
+              "application/json": {
+                "message": "invalid email"
+              }
+            }
+          },
+          "200": {
+            "description": "JSON",
+            "examples": {
+              "application/json": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkN2MwMzYwMThlZGU3NjA1YTZmZDA1OSIsImlhdCI6MTU2ODQwODU0MCwiZXhwIjoxNTY4NDEyMTQwfQ.YkNckU--SM3c7IjU8aLTebeKSX4gLqlqG_Aqpw3F4Gs",
+                "expiresIn": 3600,
+                "unit": "seconds"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

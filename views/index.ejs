@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Upload form</title>
+</head>
+<body>
+  <h1>Upload Form</h1>
+  <form name="upload-form" action="/api/v1/update-avatar" method="post" enctype="multipart/form-data">
+    <input type="file" name="attachment" id="attachment">
+    <button type="submit">Send</button>
+  </form>
+  <br/>
+  <br/>
+  <a href="/">Go Back</a>
+</body>
+</html>
