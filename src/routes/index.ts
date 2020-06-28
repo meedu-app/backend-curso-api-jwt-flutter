@@ -15,7 +15,7 @@ const EXPIRES_IN = 60 * 60; // 1 hour
 
 export default (app: Application): void => {
   app.get('/', (req, res) => {
-    res.render('index');
+    res.send("meedu.app 😎")
   });
 
   app.post('/api/v1/register', async (req, res) => {
