@@ -21,6 +21,7 @@ export const isLogin = async (
     if (!result) {
       throw new Error('invalid token');
     }
+    console.log('result', result);
     req.userId = result.id;
     next();
   } catch (error) {

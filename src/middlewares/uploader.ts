@@ -5,9 +5,10 @@ import path from 'path';
 // SET STORAGE
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    if (!fs.existsSync(__dirname + '/../../public/uploads')) {
+    const uploadPath = path.join(__dirname, '/../../', '/public/uploads');
+    if (!fs.existsSync(uploadPath)) {
       console.log('folder not exists');
-      fs.mkdirSync(__dirname + '/../../public/uploads', { recursive: true });
+      fs.mkdirSync(uploadPath, { recursive: true });
     }
     cb(null, './public/uploads');
   },

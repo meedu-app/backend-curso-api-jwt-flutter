@@ -73,6 +73,7 @@ export default (app: Application): void => {
 
   app.get('/api/v1/user-info', isLogin, async (req, res) => {
     try {
+      console.log('userId', req.userId!);
       const response = await profile.info(req.userId!);
       res.status(200).send(response);
     } catch (error) {
