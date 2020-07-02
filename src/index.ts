@@ -22,14 +22,7 @@ app.set('view engine', 'ejs');
 // public files
 app.use(express.static('public'));
 
-const swaggerDocument = JSON.parse(
-  fs.readFileSync(`${__dirname}/swagger.json`, 'utf8')
-);
-
 mongoose.set('useCreateIndex', true);
-
-// add swagger doc route
-app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const PORT = process.env.PORT || 7000;
 mongoose
