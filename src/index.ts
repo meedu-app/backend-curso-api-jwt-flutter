@@ -25,23 +25,17 @@ app.use(express.static('public'));
 mongoose.set('useCreateIndex', true);
 
 const PORT = process.env.PORT || 7000;
-
-setTimeout(() => {
-  mongoose
-    .connect(process.env.MONGO!, {
-      useNewUrlParser: true
-    })
-    .then(() => {
-      app.listen(PORT, () => {
-        console.log(`Listening on ${PORT}`);
-        if (process.send) {
-          process.send('ready');
-        }
-      });
-    })
-    .catch((e) => {
-      console.error(`error to trying connected to mongodb ${e}`);
+mongoose
+  .connect(process.env.MONGO!, {
+    useNewUrlParser: true
+  })
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Listening on ${PORT}`);
     });
-}, 10000);
+  })
+  .catch((e) => {
+    console.error(`error to trying connected to mongodb ${e}`);
+  });
 
 api(app);
