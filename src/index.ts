@@ -34,11 +34,14 @@ setTimeout(() => {
     .then(() => {
       app.listen(PORT, () => {
         console.log(`Listening on ${PORT}`);
+        if (process.send) {
+          process.send('ready');
+        }
       });
     })
     .catch((e) => {
       console.error(`error to trying connected to mongodb ${e}`);
     });
-}, 5000);
+}, 10000);
 
 api(app);
