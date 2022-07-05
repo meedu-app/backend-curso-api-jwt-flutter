@@ -28,7 +28,7 @@
     "socket.io": "^2.5.0",
     "socketio-jwt": "^4.5.0",
     "swagger-ui-express": "^4.4.0",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
