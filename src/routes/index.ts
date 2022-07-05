@@ -32,7 +32,7 @@ export default (app: Application): void => {
         expiresIn: EXPIRES_IN
       });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       if (e.errors) {
         let duplicatedValues = [] as string[];
         if (e.errors.email) {
@@ -66,7 +66,7 @@ export default (app: Application): void => {
         expiresIn: EXPIRES_IN
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       res.status(error.code || 403).send({ message: error.message });
     }
   });
@@ -94,7 +94,7 @@ export default (app: Application): void => {
         await profile.avatar(req.userId!, req.filePath!);
         res.status(200).send(req.filePath);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).send({ message: error.message });
       }
     }
@@ -109,7 +109,7 @@ export default (app: Application): void => {
       console.log('token refrescado');
       res.status(200).send(data);
     } catch (error) {
-      console.log('error refresh-token', error);
+      // console.log('error refresh-token', error);
       if (error.message === '403') {
         res.status(403).send({ message: 'invalid token' });
       } else {

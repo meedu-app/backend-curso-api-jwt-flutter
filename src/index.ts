@@ -22,13 +22,9 @@ app.set('view engine', 'ejs');
 // public files
 app.use(express.static('public'));
 
-mongoose.set('useCreateIndex', true);
-
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT || 9000;
 mongoose
-  .connect(process.env.MONGO!, {
-    useNewUrlParser: true
-  })
+  .connect(process.env.MONGO!, {})
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Listening on ${PORT}`);
