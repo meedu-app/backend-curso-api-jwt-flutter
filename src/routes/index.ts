@@ -31,7 +31,7 @@ export default (app: Application): void => {
         token,
         expiresIn: EXPIRES_IN
       });
-    } catch (e) {
+    } catch (e: any) {
       // console.log(e);
       if (e.errors) {
         let duplicatedValues = [] as string[];
@@ -65,7 +65,7 @@ export default (app: Application): void => {
         token,
         expiresIn: EXPIRES_IN
       });
-    } catch (error) {
+    } catch (error: any) {
       // console.log(error);
       res.status(error.code || 403).send({ message: error.message });
     }
@@ -76,7 +76,7 @@ export default (app: Application): void => {
       console.log('userId', req.userId!);
       const response = await profile.info(req.userId!);
       res.status(200).send(response);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).send({ message: error.message });
     }
   });
@@ -93,7 +93,7 @@ export default (app: Application): void => {
         }
         await profile.avatar(req.userId!, req.filePath!);
         res.status(200).send(req.filePath);
-      } catch (error) {
+      } catch (error: any) {
         // console.log(error);
         res.status(500).send({ message: error.message });
       }
@@ -108,7 +108,7 @@ export default (app: Application): void => {
       if (!data) throw new Error('invalid refreshToken');
       console.log('token refrescado');
       res.status(200).send(data);
-    } catch (error) {
+    } catch (error: any) {
       // console.log('error refresh-token', error);
       if (error.message === '403') {
         res.status(403).send({ message: 'invalid token' });

@@ -24,7 +24,7 @@ export const isLogin = async (
     console.log('result', result);
     req.userId = result.id;
     next();
-  } catch (error) {
+  } catch (error: any) {
     res.status(403).send({ message: error.message });
   }
 };
